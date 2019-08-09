@@ -1,4 +1,4 @@
-package com.lhbasura.springbootthreadpooldemo.service;
+package com.lhbasura.threadpool.service;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;

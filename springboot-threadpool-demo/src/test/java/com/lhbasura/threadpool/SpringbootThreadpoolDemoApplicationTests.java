@@ -1,4 +1,4 @@
-package com.lhbasura.springbootthreadpooldemo;
+package com.lhbasura.threadpool;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

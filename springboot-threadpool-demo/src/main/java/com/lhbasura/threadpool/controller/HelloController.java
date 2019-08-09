@@ -1,6 +1,6 @@
-package com.lhbasura.springbootthreadpooldemo.controller;
+package com.lhbasura.threadpool.controller;
 
-import com.lhbasura.springbootthreadpooldemo.service.HelloService;
+import com.lhbasura.threadpool.service.HelloService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

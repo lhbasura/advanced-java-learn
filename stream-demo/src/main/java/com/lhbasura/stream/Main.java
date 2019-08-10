@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
+        System.exit(0);
         List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
 
         List<String> strings =Arrays.asList("this","is","a","string");

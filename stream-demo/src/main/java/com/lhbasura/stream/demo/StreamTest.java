@@ -1,13 +1,12 @@
-package com.lhbasura.stream;
+package com.lhbasura.stream.demo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class Main {
+public class StreamTest {
     public static void main(String[] args) {
         System.exit(0);
         List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);

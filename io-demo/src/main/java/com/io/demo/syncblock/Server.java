@@ -8,14 +8,15 @@ import java.net.Socket;
 同步阻塞IO
  */
 public class Server {
-    static Object lock = new Object();
+
+    private static final int PORT = 8888;
 
     public static void doSomething() {
         System.out.println("这里是后继操作");
     }
 
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(8888);
+        ServerSocket serverSocket = new ServerSocket(PORT);
         while (true) {
             // 这里连接是阻塞的，accept实质上也进行了IO操作，三次握手的本质是传输是TCP数据包
             Socket client = serverSocket.accept();

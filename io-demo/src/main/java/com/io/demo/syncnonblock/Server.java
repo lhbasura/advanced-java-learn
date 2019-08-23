@@ -2,7 +2,6 @@ package com.io.demo.syncnonblock;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.ServerSocket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -47,6 +46,7 @@ public class Server {
                 if (key.isConnectable()) {
                     System.out.println("isConnectable = true");
                 }
+                doSomething();
                 iter.remove();
             }
         }

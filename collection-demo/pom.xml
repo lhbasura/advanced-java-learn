@@ -9,9 +9,9 @@
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
+    <artifactId>collection-demo</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
 
-    <artifactId>stream-demo</artifactId>
-    <version>1.0-SNAPSHOT</version>
 
 
 </project>

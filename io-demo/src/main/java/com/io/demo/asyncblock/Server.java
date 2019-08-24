@@ -1,5 +1,6 @@
 package com.io.demo.asyncblock;
 
+import com.io.demo.Client;
 import com.io.demo.Util;
 
 import java.io.*;
@@ -11,13 +12,14 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
 
 public class Server {
 
     private static final int BUF_SIZE = 1024;
     private static final int PORT = 8888;
+
+    static private Map<Socket,Integer> clients=new HashMap<>();
 
     public static void doSomething() {
         System.out.println("这里是后继操作");
@@ -26,6 +28,8 @@ public class Server {
 
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket(PORT);
+
+
         while (true) {
             Socket socket = serverSocket.accept();//阻塞在此处
             System.out.println("一个客户端连接了");

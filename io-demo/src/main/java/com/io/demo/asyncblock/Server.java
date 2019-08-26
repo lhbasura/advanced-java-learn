@@ -1,28 +1,69 @@
 package com.io.demo.asyncblock;
 
-import com.io.demo.Client;
-import com.io.demo.Util;
 
 import java.io.*;
-import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+/*
+异步阻塞IO
+ */
 public class Server {
 
-    private static final int BUF_SIZE = 1024;
     private static final int PORT = 8888;
 
-    static private Map<Socket,Integer> clients=new HashMap<>();
 
-    public static void doSomething() {
+    private static void doSomething() {
         System.out.println("这里是后继操作");
+    }
+
+    private static Map<Socket, Integer> clients = new HashMap<>();
+
+    static class Handler implements Runnable {
+        Socket socket;
+         String str;
+
+        public Handler(Socket socket) {
+            this.socket = socket;
+            str = "";
+        }
+
+        @Override
+        public void run() {
+            new Thread(() -> {
+                while (true) {
+                    if (!str.isEmpty()) {
+                        System.out.println("收到的信息：" + str);
+                        str = "";
+                    }
+                    doSomething();
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+
+
+            BufferedReader reader = null;
+            try {
+                reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            while (!socket.isClosed()) {
+                try {
+                    // 这里读操作是阻塞的
+                    str = reader.readLine();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
 
@@ -31,12 +72,12 @@ public class Server {
 
 
         while (true) {
-            Socket socket = serverSocket.accept();//阻塞在此处
+            Socket socket = serverSocket.accept(); // 阻塞在此处(这里accept没有做异步）
             System.out.println("一个客户端连接了");
-
-            // 多线程实现异步
-            read(socket);
-            write(socket);
+            ExecutorService executorService = Executors.newCachedThreadPool();
+            // 多线程实现异步读取数据
+            Handler handler = new Handler(socket);
+            executorService.execute(handler);
         }
     }
 

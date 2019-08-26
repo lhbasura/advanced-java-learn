@@ -9,13 +9,16 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 
+/*
+同步非阻塞IO
+ */
 public class Server {
 
-    private static final int BUF_SIZE=1024;
+    private static final int BUF_SIZE = 1024;
     private static final int PORT = 8888;
     private static final int TIMEOUT = 3000;
 
-    public static void doSomething() {
+    private static void doSomething() {
         System.out.println("这里是后继操作");
     }
 
@@ -46,6 +49,7 @@ public class Server {
                 if (key.isConnectable()) {
                     System.out.println("isConnectable = true");
                 }
+                System.out.println("t2");
                 doSomething();
                 iter.remove();
             }
@@ -58,7 +62,6 @@ public class Server {
         SocketChannel sc = ssChannel.accept();
         sc.configureBlocking(false);
         sc.register(key.selector(), SelectionKey.OP_READ, ByteBuffer.allocateDirect(BUF_SIZE));
-
     }
 
     static void handleRead(SelectionKey key) throws IOException {

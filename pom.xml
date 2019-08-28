@@ -34,7 +34,6 @@
             <scope>test</scope>
         </dependency>
 
-
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -43,10 +42,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
@@ -66,5 +61,7 @@
         <module>springboot-threadpool-demo</module>
         <module>stream-demo</module>
         <module>thread-demo</module>
+        <module>jvm-test-demo</module>
+        <module>annotation-demo</module>
     </modules>
 </project>

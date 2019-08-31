@@ -7,6 +7,12 @@
         <groupId>com.lhbasura</groupId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
+    <dependencies>
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+        </dependency>
+    </dependencies>
     <properties>
         <java.version>1.6</java.version>
 

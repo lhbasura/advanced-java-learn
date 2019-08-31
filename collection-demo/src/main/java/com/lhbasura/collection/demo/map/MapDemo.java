@@ -1,4 +1,4 @@
-package com.lhbasura.collection.demo;
+package com.lhbasura.collection.demo.map;
 
 import com.lhbasura.collection.demo.map.School;
 import com.lhbasura.collection.demo.map.User;

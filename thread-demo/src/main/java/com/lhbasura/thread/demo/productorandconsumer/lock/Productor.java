@@ -1,4 +1,4 @@
-package com.lhbasura.thread.demo.productorandconsumer;
+package com.lhbasura.thread.demo.productorandconsumer.lock;
 
 public class Productor implements Runnable {
     private Clerk clerk;

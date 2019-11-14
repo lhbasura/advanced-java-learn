@@ -37,6 +37,18 @@
             <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 
@@ -60,5 +72,6 @@
         <module>jvm-test-demo</module>
         <module>annotation-demo</module>
         <module>spring-circle-dependency-demo</module>
+        <module>mapstruct-demo</module>
     </modules>
 </project>

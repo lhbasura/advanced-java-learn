@@ -1,12 +1,11 @@
 package com.lhbasura.stream.demo;
 
 import com.google.common.collect.Lists;
+import org.joda.time.DateTime;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.IntSummaryStatistics;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -65,6 +64,11 @@ public class StreamTest {
 
     @Test
     public void testGuava() {
+        DateTime date = new DateTime().withTimeAtStartOfDay();
+        Date endDate = date.toDate();
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyyMMdd HH:mm:ss");
+        System.out.println(simpleDateFormat.format(endDate));
+
         List<String> strs = Arrays.asList(new String[]{"a", "b", "c", "d"});
         List<List<String>> parts = Lists.partition(strs, 2);
         parts.stream().forEach(System.out::println);

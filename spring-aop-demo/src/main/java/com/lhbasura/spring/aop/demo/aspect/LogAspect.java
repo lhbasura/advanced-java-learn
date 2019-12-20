@@ -1,6 +1,7 @@
 package com.lhbasura.spring.aop.demo.aspect;
 
 import com.alibaba.fastjson.JSONObject;
+import com.lhbasura.spring.aop.demo.annotation.SayHello;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
@@ -53,5 +54,10 @@ public class LogAspect {
 
         //打印请求参数
         log.info("this is after log," + method + ":" + params);
+    }
+
+    @After("@annotation(test)")
+    public void annotationTest(JoinPoint joinPoint, SayHello test) {
+        log.info("hello " + test.name());
     }
 }

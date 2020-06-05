@@ -29,9 +29,11 @@ public class Server {
         socketChannel.configureBlocking(false);
         Selector selector = Selector.open();
         socketChannel.register(selector, SelectionKey.OP_ACCEPT);
+        int i=0;
         while (true) {
+            i++;
             if (selector.select(TIMEOUT) == 0) {
-                System.out.println("==");
+                System.out.println("==>"+i);
                 continue;
             }
             Iterator<SelectionKey> iter = selector.selectedKeys().iterator();

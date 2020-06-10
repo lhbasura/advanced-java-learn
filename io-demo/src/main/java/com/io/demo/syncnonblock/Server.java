@@ -51,7 +51,6 @@ public class Server {
                 if (key.isConnectable()) {
                     System.out.println("isConnectable = true");
                 }
-                System.out.println("t2");
                 doSomething();
                 iter.remove();
             }

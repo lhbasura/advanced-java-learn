@@ -1,6 +1,8 @@
 package com.io.demo.asyncblock;
 
 
+import lombok.SneakyThrows;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -33,6 +35,7 @@ public class Server {
 
         @Override
         public void run() {
+            //这个线程从内存中拿变量
             new Thread(() -> {
                 while (true) {
                     if (!str.isEmpty()) {
@@ -47,21 +50,11 @@ public class Server {
                     }
                 }
             }).start();
-
-
-            BufferedReader reader = null;
             try {
-                reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                write(socket);
+                read(socket);
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-            while (!socket.isClosed()) {
-                try {
-                    // 这里读操作是阻塞的
-                    str = reader.readLine();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         }
     }
@@ -69,8 +62,6 @@ public class Server {
 
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket(PORT);
-
-
         while (true) {
             Socket socket = serverSocket.accept(); // 阻塞在此处(这里accept没有做异步）
             System.out.println("一个客户端连接了");
@@ -81,6 +72,11 @@ public class Server {
         }
     }
 
+    /**
+     * 异步写
+     * @param socket
+     * @throws IOException
+     */
     public static void write(Socket socket) throws IOException {
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
@@ -91,7 +87,6 @@ public class Server {
                 try {
                     writer.write(str);
                     writer.flush();
-                    doSomething(); //后继操作
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -99,6 +94,11 @@ public class Server {
         }).start();
     }
 
+    /**
+     * 异步读
+     * @param socket
+     * @throws IOException
+     */
     public static void read(Socket socket) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         new Thread(() -> {
@@ -108,7 +108,6 @@ public class Server {
                     if ((str = reader.readLine()) != null) // readLine为阻塞操作
                     {
                         System.out.println("\33 you received a messge:" + str);
-                        doSomething(); //后继操作
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

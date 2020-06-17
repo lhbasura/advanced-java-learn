@@ -1,12 +1,15 @@
-package com.io.demo.syncblock;
+package com.lhbasura.io.demo.syncblock;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/*
-同步阻塞IO
+/**
+ * @author asura
+ * @date 2020/6/12 15:30
+ * @description 同步阻塞IO
  */
+
 public class Server {
 
     private static final int PORT = 8888;

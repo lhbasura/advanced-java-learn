@@ -1,4 +1,4 @@
-package com.io.demo;
+package com.lhbasura.io.demo;
 
 import java.io.*;
 import java.net.Socket;

@@ -1,20 +1,21 @@
-package com.io.demo.asyncnonblock.nio;
+package com.lhbasura.io.demo.asyncnonblock.nio;
 
 
 import java.io.*;
 import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
-import java.util.Scanner;
 
 /**
- * 异步非阻塞
+ * @author asura
+ * @date 2020/6/12 15:29
+ * @description 异步非阻塞IO(NIO实现)
  */
+
 public class Server {
     private static final int BUF_SIZE=1024;
     private static final int PORT = 8888;
@@ -23,10 +24,10 @@ public class Server {
         System.out.println("这里是后继操作");
     }
     public static void main(String[]args) throws IOException {
-        SocketChannel socketChannel=SocketChannel.open();
+        ServerSocketChannel socketChannel=ServerSocketChannel.open();
         socketChannel.bind(new InetSocketAddress(PORT));
-        Selector selector=Selector.open();
         socketChannel.configureBlocking(false); // 必须设置为非阻塞
+        Selector selector=Selector.open();
         socketChannel.register(selector, SelectionKey.OP_ACCEPT);
         while (true) {
             int i=0;

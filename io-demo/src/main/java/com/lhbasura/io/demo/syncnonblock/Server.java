@@ -1,4 +1,4 @@
-package com.io.demo.syncnonblock;
+package com.lhbasura.io.demo.syncnonblock;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -9,9 +9,12 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 
-/*
-同步非阻塞IO
+/**
+ * @author asura
+ * @date 2020/6/12 15:30
+ * @description 同步非阻塞IO
  */
+
 public class Server {
 
     private static final int BUF_SIZE = 1024;

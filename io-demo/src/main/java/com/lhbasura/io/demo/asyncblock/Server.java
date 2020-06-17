@@ -1,4 +1,4 @@
-package com.io.demo.asyncblock;
+package com.lhbasura.io.demo.asyncblock;
 
 
 import lombok.SneakyThrows;
@@ -10,9 +10,12 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/*
-异步阻塞IO
+/**
+ * @author asura
+ * @date 2020/6/12 15:28
+ * @description 异步阻塞IO
  */
+
 public class Server {
 
     private static final int PORT = 8888;

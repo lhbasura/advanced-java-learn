@@ -1,4 +1,4 @@
-package com.lhbasura.thread.demo;
+package com.lhbasura.thread.demo.juctest;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;

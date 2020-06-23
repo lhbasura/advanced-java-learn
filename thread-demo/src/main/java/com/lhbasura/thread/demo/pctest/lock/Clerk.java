@@ -1,4 +1,4 @@
-package com.lhbasura.thread.demo.productorandconsumer.lock;
+package com.lhbasura.thread.demo.pctest.lock;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;

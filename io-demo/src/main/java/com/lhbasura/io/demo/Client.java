@@ -31,6 +31,7 @@ public class Client {
                 try {
                     writer.write(str);
                     writer.flush();
+                    System.out.println("send ok");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

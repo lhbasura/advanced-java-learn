@@ -1,18 +1,18 @@
-package com.lhbasura.thread.demo.productorandconsumer.sync;
+package com.lhbasura.thread.demo.pctest.lock;
 
-public class Consumer implements Runnable {
+public class Productor implements Runnable {
     private Clerk clerk;
 
-    public Consumer(Clerk clerk) {
+    public Productor(Clerk clerk) {
         this.clerk = clerk;
     }
 
     @Override
     public void run() {
-        for (int i=0;i<2;i++)
+        for (int i = 0; i < 2; i++)
         {
             try {
-                clerk.sell();
+                clerk.get();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

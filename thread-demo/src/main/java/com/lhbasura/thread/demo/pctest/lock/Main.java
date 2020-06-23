@@ -1,6 +1,4 @@
-package com.lhbasura.thread.demo.productorandconsumer.sync;
-
-import java.util.concurrent.atomic.AtomicInteger;
+package com.lhbasura.thread.demo.pctest.lock;
 
 public class Main {
     public static void main(String[]args)

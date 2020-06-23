@@ -1,4 +1,4 @@
-package com.lhbasura.thread.demo.productorandconsumer.lock;
+package com.lhbasura.thread.demo.pctest.sync;
 
 public class Productor implements Runnable {
     private Clerk clerk;

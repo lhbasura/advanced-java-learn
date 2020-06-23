@@ -1,4 +1,4 @@
-package com.lhbasura.thread.demo;
+package com.lhbasura.thread.demo.volatiletest;
 
 /**
  * volatile关键字保证可见性
@@ -10,24 +10,24 @@ public class VolatileTest1 {
     此时其他线程操作该值时会再去主存中读取,此处如果不加volatile关键字，则
     其他线程无法感知变量的修改，还是采用其线程独占区中局部变量表的值
      */
-    private static volatile boolean isGo = false;
+    private static  boolean isGo = false;
 
     public static void main(String[] args) throws InterruptedException {
 
         Thread thread1 = new Thread(() -> {
-            System.out.println("is enter thread");
+            System.out.println("is enter thread1");
             //如果isGo不加volatile修饰这里就会一直读取线程局部变量表中的false造成死循环
             while (!isGo) {
             }
-            System.out.println("thread is end");
+            System.out.println("thread1 is end");
         });
         thread1.start();
 
         Thread.sleep(2000);
         Thread thread2 = new Thread(() -> {
-            System.out.println("is enter thread 1");
+            System.out.println("is enter thread2");
             isGo = true;
-            System.out.println("thread 1 is end");
+            System.out.println("thread2 is end");
 
         });
         thread2.start();

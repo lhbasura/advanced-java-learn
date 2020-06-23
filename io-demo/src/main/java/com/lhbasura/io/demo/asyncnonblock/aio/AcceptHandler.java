@@ -14,7 +14,7 @@ import java.util.Scanner;
  * @date 2020/6/17 10:38
  * @description
  */
-public class AIOHandler implements CompletionHandler<AsynchronousSocketChannel,Server> {
+public class AcceptHandler implements CompletionHandler<AsynchronousSocketChannel,Server> {
     private static final int BUF_SIZE=1024;
     @Override
     public void completed(AsynchronousSocketChannel result, Server attachment) {
@@ -44,23 +44,7 @@ public class AIOHandler implements CompletionHandler<AsynchronousSocketChannel,S
         clientChannel.read(
                 buffer,   // 用于数据中转缓冲区
                 buffer,   // 用于存储client发送的数据的缓冲区
-                new CompletionHandler<Integer, ByteBuffer>() {
-                    @Override
-                    public void completed(Integer result, ByteBuffer attachment) {
-                        attachment.flip(); // 移动 limit位置
-                        System.out.println("receive client data length：" + attachment.limit() + " byte");
-                        // 读取client发送的数据
-                        System.out.println("from client : "+new String(attachment.array(),0,attachment.limit()));
-
-                        // 向client写入数据
-                      //  doWrite(clientChannel);
-                    }
-
-                    @Override
-                    public void failed(Throwable exc, ByteBuffer attachment) {
-                        exc.printStackTrace();
-                    }
-                }
+                new ReadHandler()
         );
     }
     private void doWrite(AsynchronousSocketChannel clientChannel) {

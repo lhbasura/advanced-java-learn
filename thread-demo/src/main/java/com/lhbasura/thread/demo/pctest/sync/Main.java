@@ -1,4 +1,4 @@
-package com.lhbasura.thread.demo.productorandconsumer.lock;
+package com.lhbasura.thread.demo.pctest.sync;
 
 public class Main {
     public static void main(String[]args)

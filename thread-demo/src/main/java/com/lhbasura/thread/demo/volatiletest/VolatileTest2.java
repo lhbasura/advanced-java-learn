@@ -1,4 +1,4 @@
-package com.lhbasura.thread.demo;
+package com.lhbasura.thread.demo.volatiletest;
 
 
 import java.util.HashMap;

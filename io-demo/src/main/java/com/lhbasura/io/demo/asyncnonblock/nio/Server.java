@@ -33,12 +33,14 @@ public class Server {
             int i=0;
             while (true) {
                 i++;
-                if (selector.select(TIMEOUT) == 0) {
+                int result=selector.select(TIMEOUT);
+                if ( result== 0) {
                     System.out.println("==>"+i);
                     continue;
                 }
                 Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
                 while (iter.hasNext()) {
+                    System.out.println("has next");
                     SelectionKey key = iter.next();
                     if (key.isAcceptable()) {
                         new Thread(()->{
@@ -47,7 +49,7 @@ public class Server {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        });
+                        }).start();
                     }
                     if (key.isReadable()) {
                         new Thread(()->{
@@ -56,7 +58,7 @@ public class Server {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        });
+                        }).start();
                     }
                     if (key.isWritable() && key.isValid()) {
                         new Thread(()->{
@@ -65,13 +67,14 @@ public class Server {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        });
+                        }).start();
                     }
                     if (key.isConnectable()) {
                         System.out.println("isConnectable = true");
                     }
                     doSomething();
-                    iter.remove();
+               //     iter.remove();
+                    System.out.println(iter.hasNext());
                 }
             }
 

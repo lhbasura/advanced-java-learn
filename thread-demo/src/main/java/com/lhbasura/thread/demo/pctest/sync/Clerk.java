@@ -1,4 +1,4 @@
-package com.lhbasura.thread.demo.productorandconsumer.sync;
+package com.lhbasura.thread.demo.pctest.sync;
 
 public class Clerk {
     private int product = 0;

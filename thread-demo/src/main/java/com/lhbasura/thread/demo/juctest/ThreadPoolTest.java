@@ -29,10 +29,13 @@ public class ThreadPoolTest {
             System.out.println("thread is end");
 
         });
-        cachedThreadPool.shutdown();//会禁止线程submit，当线程执行完后关闭线程池
+
+        //会禁止线程submit，当线程执行完后关闭线程池
+        cachedThreadPool.shutdown();
 
         try {
-            boolean result = cachedThreadPool.awaitTermination(10, TimeUnit.SECONDS);//这里理论上会阻塞<=线程运行的时间
+            //这里理论上会阻塞<=线程运行的时间
+            boolean result = cachedThreadPool.awaitTermination(10, TimeUnit.SECONDS);
             if(result) {
                 System.out.println("thread pool is shutdown");
             }else {
@@ -56,9 +59,11 @@ public class ThreadPoolTest {
             System.out.println("thread is end");
 
         });
-        cachedThreadPool.shutdownNow();//会禁止线程submit，且对当前线程池中的线程调用interrupt,当线程执行完后关闭线程池
+        //会禁止线程submit，且对当前线程池中的线程调用interrupt,当线程执行完后关闭线程池
+        cachedThreadPool.shutdownNow();
         try {
-            boolean result = cachedThreadPool.awaitTermination(2, TimeUnit.MINUTES);//这里由于线程池调用了shutdownNow，结束了sleep状态，所以理论上会直接返回true不会发生阻塞
+            //这里由于线程池调用了shutdownNow，结束了sleep状态，所以理论上会直接返回true不会发生阻塞
+            boolean result = cachedThreadPool.awaitTermination(2, TimeUnit.MINUTES);
             if(result) {
                 System.out.println("thread pool is shutdown");
             }else {

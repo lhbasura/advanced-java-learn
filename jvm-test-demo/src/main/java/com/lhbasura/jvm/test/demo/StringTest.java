@@ -22,9 +22,9 @@ public class StringTest {
      * 所以a==b为true
      */
     public static void main(String[] args) {
-        String a = new String("ab") + new String("c");
-        a.intern();
-        String b = "abc";
-        System.out.println(b == a);
+        int []a={1,2,3};
+        int []b=a;
+        b[0]=10;
+        System.out.println(a==b);
     }
 }

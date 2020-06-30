@@ -22,11 +22,6 @@
     </properties>
     <dependencies>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
         <dependency>
             <groupId>joda-time</groupId>
@@ -34,18 +29,16 @@
             <version>2.3</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -60,6 +53,7 @@
         </dependency>
 
     </dependencies>
+
 
     <build>
         <plugins>
@@ -84,5 +78,6 @@
         <module>mapstruct-demo</module>
         <module>spring-aop-demo</module>
         <module>netty-demo</module>
+        <module>rabbitmq-demo</module>
     </modules>
 </project>

@@ -1,5 +1,7 @@
 package com.lhbasura.thread.demo.productorandconsumer.sync;
 
+import java.util.HashMap;
+
 public class Clerk {
     private int product = 0;
     private static final int space = 10;
@@ -9,6 +11,7 @@ public class Clerk {
             System.out.println("库存不足");
             this.wait();
         }
+        HashMap
         System.out.println(Thread.currentThread().getName() + "消费了一个产品,还剩" + (--product) + "个");
         this.notifyAll();
     }

@@ -83,5 +83,6 @@
         <module>spring-circle-dependency-demo</module>
         <module>mapstruct-demo</module>
         <module>spring-aop-demo</module>
+        <module>netty-demo</module>
     </modules>
 </project>

@@ -8,6 +8,11 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+/**
+ * @author asura
+ * @date 2020/7/1 17:38
+ * @description java8流式语法
+ */
 
 public class StreamTest {
     @Test

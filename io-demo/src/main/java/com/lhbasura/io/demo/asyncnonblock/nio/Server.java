@@ -17,71 +17,74 @@ import java.util.Iterator;
  */
 
 public class Server {
-    private static final int BUF_SIZE=1024;
+
+    private static final int BUF_SIZE = 1024;
     private static final int PORT = 8888;
-    private static final int TIMEOUT = 3000;
+    private static final int TIMEOUT = 1000;
+
     private static void doSomething() {
         System.out.println("这里是后继操作");
     }
-    public static void main(String[]args) throws IOException {
-        ServerSocketChannel socketChannel=ServerSocketChannel.open();
-        socketChannel.bind(new InetSocketAddress(PORT));
-        socketChannel.configureBlocking(false); // 必须设置为非阻塞
-        Selector selector=Selector.open();
-        socketChannel.register(selector, SelectionKey.OP_ACCEPT);
+
+    ServerSocketChannel socketChannel;
+    Selector selector = null;
+    public Server(){
+        this.init(PORT);
+    }
+    private void init(int port){
+        try {
+            socketChannel = ServerSocketChannel.open();
+            socketChannel.socket().bind(new InetSocketAddress(port));
+            socketChannel.configureBlocking(false);
+            selector = Selector.open();
+            socketChannel.register(selector, SelectionKey.OP_ACCEPT);
+            socketChannel.register(selector, SelectionKey.OP_WRITE);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int i = 0;
         while (true) {
-            int i=0;
-            while (true) {
-                i++;
-                int result=selector.select(TIMEOUT);
-                if ( result== 0) {
-                    System.out.println("==>"+i);
+            i++;
+            try {
+                if (selector.select(TIMEOUT) == 0) {
+                  //  System.out.println("==>" + i);
                     continue;
                 }
-                Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
-                while (iter.hasNext()) {
-                    System.out.println("has next");
-                    SelectionKey key = iter.next();
-                    if (key.isAcceptable()) {
-                        new Thread(()->{
-                            try {
-                                handleAccept(key);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }).start();
-                    }
-                    if (key.isReadable()) {
-                        new Thread(()->{
-                            try {
-                                handleRead(key);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }).start();
-                    }
-                    if (key.isWritable() && key.isValid()) {
-                        new Thread(()->{
-                            try {
-                                handleWrite(key);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }).start();
-                    }
-                    if (key.isConnectable()) {
-                        System.out.println("isConnectable = true");
-                    }
-                    doSomething();
-               //     iter.remove();
-                    System.out.println(iter.hasNext());
-                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
+            Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
+            while (iter.hasNext()) {
+                SelectionKey key = iter.next();
+                new Thread(()->{
+                    try {
+                        if (key.isAcceptable()) {
+                            handleAccept(key);
+                        }
+                        if (key.isReadable()) {
+                            handleRead(key);
+                        }
+                        if ( key.isValid()) {
+                            handleWrite(key);
+                        }
+                        if (key.isConnectable()) {
+                            System.out.println("isConnectable = true");
+                        }
+                    }catch (IOException exception){
+                        key.cancel();
+                        exception.printStackTrace();
+                    }
+                    iter.remove();
+                }).start();
+                doSomething();
+            }
         }
     }
-
-    static void handleAccept(SelectionKey key) throws IOException {
+    public static void main(String[] args) {
+        new Server();
+    }
+    void handleAccept(SelectionKey key) throws IOException {
         System.out.println("一个客户端连接了");
         ServerSocketChannel ssChannel = (ServerSocketChannel) key.channel();
         SocketChannel sc = ssChannel.accept();
@@ -89,7 +92,7 @@ public class Server {
         sc.register(key.selector(), SelectionKey.OP_READ, ByteBuffer.allocateDirect(BUF_SIZE));
     }
 
-    static void handleRead(SelectionKey key) throws IOException {
+    void handleRead(SelectionKey key) throws IOException {
         System.out.println("发生了读操作");
         SocketChannel sc = (SocketChannel) key.channel();
         ByteBuffer buf = (ByteBuffer) key.attachment();
@@ -109,7 +112,7 @@ public class Server {
 
     }
 
-    static void handleWrite(SelectionKey key) throws IOException {
+    void handleWrite(SelectionKey key) throws IOException {
 
         ByteBuffer buf = (ByteBuffer) key.attachment();
         buf.flip();
@@ -119,5 +122,4 @@ public class Server {
         }
         buf.compact();
     }
-
 }

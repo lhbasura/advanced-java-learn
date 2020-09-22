@@ -19,10 +19,6 @@ public class Server {
     private static final int THREAD_NUM = 4;
     private AsynchronousServerSocketChannel serverSocketChannel;
 
-    private static void doSomething() {
-        System.out.println("这里是后继操作");
-    }
-
     public Server() {
         this.init(PORT);
     }

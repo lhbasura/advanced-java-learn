@@ -102,6 +102,12 @@ public class Server {
             buf.flip();
             System.out.println(new String(buf.array()));
             bytesRead = sc.read(buf);
+                    try {
+                sc.write(buf);// 将消息回送给客户端
+                System.out.println("send ok");
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
         }
         if (bytesRead == -1) {
             sc.close();
@@ -115,7 +121,7 @@ public class Server {
 //            String str="ss";
 //            buf.put(str.getBytes());
 //            buf.flip();
-            SocketChannel sc = (SocketChannel) key.channel();
+//            SocketChannel sc = (SocketChannel) key.channel();
 
 //        try {
 //                sc.write(buf);// 将消息回送给客户端

@@ -38,7 +38,7 @@ public class Server {
             socketChannel.configureBlocking(false);
             selector = Selector.open();
             socketChannel.register(selector, SelectionKey.OP_ACCEPT);
-            socketChannel.register(selector, SelectionKey.OP_WRITE);
+            //socketChannel.register(selector, SelectionKey.OP_WRITE);
         } catch (IOException e) {
             e.printStackTrace();
         }

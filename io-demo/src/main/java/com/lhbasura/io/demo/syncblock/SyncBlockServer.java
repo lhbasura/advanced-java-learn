@@ -1,12 +1,8 @@
 package com.lhbasura.io.demo.syncblock;
 
-import lombok.SneakyThrows;
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -15,7 +11,7 @@ import java.util.Scanner;
  * @description 同步阻塞IO
  */
 
-public class Server {
+public class SyncBlockServer {
 
     private static final int PORT = 8888;
 
@@ -25,7 +21,7 @@ public class Server {
 
     private ServerSocket serverSocket;
 
-    public Server() {
+    public SyncBlockServer() {
         this.init(PORT);
     }
 
@@ -93,6 +89,6 @@ public class Server {
 
 
     public static void main(String[] args) {
-        new Server();
+        new SyncBlockServer();
     }
 }

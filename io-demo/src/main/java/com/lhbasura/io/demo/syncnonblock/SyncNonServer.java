@@ -8,7 +8,6 @@ import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
-import java.util.Scanner;
 
 /**
  * @author asura
@@ -16,7 +15,7 @@ import java.util.Scanner;
  * @description 同步非阻塞IO
  */
 
-public class Server {
+public class SyncNonServer {
 
     private static final int BUF_SIZE = 1024;
     private static final int PORT = 8888;
@@ -29,7 +28,7 @@ public class Server {
     ServerSocketChannel socketChannel;
     Selector selector = null;
 
-    public Server() {
+    public SyncNonServer() {
         this.init(PORT);
     }
 
@@ -82,7 +81,7 @@ public class Server {
     }
 
     public static void main(String[] args) {
-        new Server();
+        new SyncNonServer();
     }
 
     void handleAccept(SelectionKey key) throws IOException {

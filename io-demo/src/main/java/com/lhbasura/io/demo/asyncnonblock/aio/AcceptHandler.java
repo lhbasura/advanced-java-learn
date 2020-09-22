@@ -1,11 +1,8 @@
 package com.lhbasura.io.demo.asyncnonblock.aio;
 
 import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.CompletionHandler;
-import java.nio.charset.Charset;
-import java.nio.charset.CharsetDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
@@ -14,10 +11,10 @@ import java.util.Scanner;
  * @date 2020/6/17 10:38
  * @description
  */
-public class AcceptHandler implements CompletionHandler<AsynchronousSocketChannel,Server> {
+public class AcceptHandler implements CompletionHandler<AsynchronousSocketChannel, SyncNonBlockAIOServer> {
     private static final int BUF_SIZE=1024;
     @Override
-    public void completed(AsynchronousSocketChannel result, Server attachment) {
+    public void completed(AsynchronousSocketChannel result, SyncNonBlockAIOServer attachment) {
         // 处理下一次的client连接。类似链式调用
         attachment.getServerSocketChannel().accept(attachment, this);
 
@@ -26,7 +23,7 @@ public class AcceptHandler implements CompletionHandler<AsynchronousSocketChanne
     }
 
     @Override
-    public void failed(Throwable exc, Server attachment) {
+    public void failed(Throwable exc, SyncNonBlockAIOServer attachment) {
         exc.printStackTrace();
     }
     /**

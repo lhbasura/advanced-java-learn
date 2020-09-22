@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
  * @description 异步阻塞IO
  */
 
-public class Server {
+public class AsyncBlockServer {
 
     private static final int PORT = 8888;
 
@@ -25,7 +25,6 @@ public class Server {
         System.out.println("这里是后继操作");
     }
 
-    private static Map<Socket, Integer> clients = new HashMap<>();
 
     static class Handler implements Runnable {
         Socket socket;

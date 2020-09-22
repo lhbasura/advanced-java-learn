@@ -12,14 +12,14 @@ import java.nio.channels.AsynchronousServerSocketChannel;
  * @description 异步非阻塞IO(AIO实现)
  */
 @Data
-public class Server {
+public class SyncNonBlockAIOServer {
 
     private static final int PORT = 8888;
     private static final int TIMEOUT = 3000;
     private static final int THREAD_NUM = 4;
     private AsynchronousServerSocketChannel serverSocketChannel;
 
-    public Server() {
+    public SyncNonBlockAIOServer() {
         this.init(PORT);
     }
 
@@ -42,7 +42,7 @@ public class Server {
     }
 
     public static void main(String[] args) throws IOException {
-        new Server();
+        new SyncNonBlockAIOServer();
 
     }
 }

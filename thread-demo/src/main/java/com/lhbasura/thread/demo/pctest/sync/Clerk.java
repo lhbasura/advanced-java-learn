@@ -11,7 +11,6 @@ public class Clerk {
             System.out.println("库存不足");
             this.wait();
         }
-        HashMap
         System.out.println(Thread.currentThread().getName() + "消费了一个产品,还剩" + (--product) + "个");
         this.notifyAll();
     }

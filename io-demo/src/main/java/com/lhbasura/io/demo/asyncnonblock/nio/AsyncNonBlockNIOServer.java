@@ -16,7 +16,7 @@ import java.util.Iterator;
  * @description 异步非阻塞IO(NIO实现)
  */
 
-public class Server {
+public class AsyncNonBlockNIOServer {
 
     private static final int BUF_SIZE = 1024;
     private static final int PORT = 8888;
@@ -28,7 +28,7 @@ public class Server {
 
     ServerSocketChannel socketChannel;
     Selector selector = null;
-    public Server(){
+    public AsyncNonBlockNIOServer(){
         this.init(PORT);
     }
     private void init(int port){
@@ -82,7 +82,7 @@ public class Server {
         }
     }
     public static void main(String[] args) {
-        new Server();
+        new AsyncNonBlockNIOServer();
     }
     void handleAccept(SelectionKey key) throws IOException {
         System.out.println("一个客户端连接了");

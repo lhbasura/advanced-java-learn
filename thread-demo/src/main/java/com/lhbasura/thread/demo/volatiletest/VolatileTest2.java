@@ -13,8 +13,8 @@ volatile关键字保证操作有序性（禁止指令重排）
  */
 public class VolatileTest2 {
 
-    static volatile int i;
-    static  volatile int j;
+    static  int i;
+    static  int j;
 
     public static void main(String[] args) throws InterruptedException {
         Set<String> set = new HashSet();

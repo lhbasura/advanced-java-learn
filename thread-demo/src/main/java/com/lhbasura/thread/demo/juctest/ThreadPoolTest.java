@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -72,5 +73,22 @@ public class ThreadPoolTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void scheduledThreadPoolTest(){
+
+    }
+    public static void main(String[]args){
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(60);
+        long start = System.currentTimeMillis();
+        System.out.println("第一次提交");
+        executorService.schedule(()->{
+            System.out.println(System.currentTimeMillis() - start);
+        }, 3, TimeUnit.SECONDS);
+        System.out.println("第二次提交");
+//        executorService.schedule(()->{
+//            System.out.println(System.currentTimeMillis() - start);
+//        }, 3, TimeUnit.SECONDS);
     }
 }

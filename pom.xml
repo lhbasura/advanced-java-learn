@@ -79,5 +79,7 @@
         <module>spring-aop-demo</module>
         <module>netty-demo</module>
         <module>rabbitmq-demo</module>
+        <module>untitled</module>
+        <module>bloom-filter-demo</module>
     </modules>
 </project>

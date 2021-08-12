@@ -10,7 +10,7 @@ public class VolatileTest1 {
     此时其他线程操作该值时会再去主存中读取,此处如果不加volatile关键字，则
     其他线程无法感知变量的修改，还是采用其线程独占区中局部变量表的值
      */
-    private static  boolean isGo = false;
+    private static   boolean isGo = false;
 
     public static void main(String[] args) throws InterruptedException {
 

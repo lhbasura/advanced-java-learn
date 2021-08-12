@@ -20,6 +20,20 @@
         <lombok.version>1.18.4</lombok.version>
 
     </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>3.1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>3.10.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
 
         <!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
@@ -79,7 +93,10 @@
         <module>spring-aop-demo</module>
         <module>netty-demo</module>
         <module>rabbitmq-demo</module>
-        <module>untitled</module>
         <module>bloom-filter-demo</module>
+        <module>mq-demo</module>
+        <module>nacos-demo</module>
+        <module>redisson-demo</module>
+        <module>springcloud-netflix-demo</module>
     </modules>
 </project>

@@ -1,0 +1,8 @@
+2021-03-03 18:53:01 INFO  RocketmqRemoting:95 - closeChannel: close the connection to remote address[47.106.69.79:9876] result: true
+2021-03-03 18:53:01 INFO  RocketmqRemoting:95 - closeChannel: close the connection to remote address[47.106.69.79:10911] result: true
+2021-03-03 18:54:56 INFO  RocketmqRemoting:95 - closeChannel: close the connection to remote address[47.106.69.79:9876] result: true
+2021-03-03 18:54:56 INFO  RocketmqRemoting:95 - closeChannel: close the connection to remote address[47.106.69.79:10911] result: true
+2021-03-03 18:56:08 INFO  RocketmqRemoting:95 - closeChannel: close the connection to remote address[47.106.69.79:9876] result: true
+2021-03-03 18:56:08 INFO  RocketmqRemoting:95 - closeChannel: close the connection to remote address[47.106.69.79:10911] result: true
+2021-03-03 18:58:16 INFO  RocketmqRemoting:95 - closeChannel: close the connection to remote address[47.106.69.79:10911] result: true
+2021-03-03 18:58:16 INFO  RocketmqRemoting:95 - closeChannel: close the connection to remote address[47.106.69.79:9876] result: true

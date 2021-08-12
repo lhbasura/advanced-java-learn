@@ -1,14 +1,16 @@
 package com.lhbasura.collection.demo.map;
 
-import com.lhbasura.collection.demo.map.School;
-import com.lhbasura.collection.demo.map.User;
+import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class MapDemo {
-    public static void main(String[] args) {
+    @Test
+    public  void testMapEqual() {
         User user1 = new User("lhbasura", 22);
         User user2 = new User("lms", 23);
         User user3 = new User("lsm", 23);
@@ -27,4 +29,29 @@ public class MapDemo {
             System.out.println(entry.getKey() + " from " + map.get(entry.getKey()));
         }
     }
+    @Test
+    public void testLinkedHashMap(){
+        Map<String, String> map = new LinkedHashMap<String, String>(16,0.75f,true){
+            @Override
+            protected boolean removeEldestEntry(Entry<String, String> eldest) {
+                return size()>5;
+            }
+        };
+        map.put("apple", "苹果");
+        map.put("watermelon", "西瓜");
+        map.put("banana", "香蕉");
+        map.put("peach", "桃子");
+        map.get("banana");
+        map.get("apple");
+        map.put("1", "桃子");
+        map.put("2", "桃子");
+        map.put("3", "桃子");
+
+
+
+        Iterator iter = map.entrySet().iterator();
+        while (iter.hasNext()) {
+            Map.Entry entry = (Map.Entry) iter.next();
+            System.out.println(entry.getKey() + "=" + entry.getValue());
+        }}
 }

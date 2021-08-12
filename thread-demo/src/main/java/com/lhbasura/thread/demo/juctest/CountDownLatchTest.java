@@ -14,14 +14,23 @@ public class CountDownLatchTest {
 
     public static void main(String[] args) {
         CountDownLatch countDownLatch = new CountDownLatch(threadNum);
-        for (int i = 0; i < 10; i++) {
-            new Thread(() -> {
-                System.out.println(Thread.currentThread().getName() + "--> is start");
-                countDownLatch.countDown();//通过coutDown函数计数
-                System.out.println(Thread.currentThread().getName() + "--> is end");
-            }).start();
-        }
+        new Thread(()->{
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException exception) {
+                exception.printStackTrace();
+            }
+            for (int i = 0; i < 10; i++) {
+                new Thread(() -> {
+                    System.out.println(Thread.currentThread().getName() + "--> is start");
+                    countDownLatch.countDown();//通过coutDown函数计数
+                    System.out.println(Thread.currentThread().getName() + "--> is end");
+                }).start();
+            }
+        }).start();
+
         try {
+            System.out.println("main is await!!!");
             countDownLatch.await();
         } catch (InterruptedException e) {
             e.printStackTrace();

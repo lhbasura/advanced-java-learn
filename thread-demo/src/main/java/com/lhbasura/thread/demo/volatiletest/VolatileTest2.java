@@ -39,8 +39,11 @@ public class VolatileTest2 {
             thread1.join();
             thread2.join();
             set.add("{a="+map.get("a")+",b="+map.get("b")+"}");
+
             System.out.println(set);
+
         }
+        System.out.println(set);
     }
 
 }

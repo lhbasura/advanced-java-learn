@@ -98,5 +98,6 @@
         <module>nacos-demo</module>
         <module>redisson-demo</module>
         <module>springcloud-netflix-demo</module>
+        <module>spring-test-demo</module>
     </modules>
 </project>

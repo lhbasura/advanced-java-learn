@@ -8,14 +8,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-@SpringBootApplication
 public class DemoApplication {
 	public static void main(String[]args) throws IOException {
-		BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("test.txt")));
-		String line;
-		while ((line=bufferedReader.readLine())!=null){
-			System.out.println(line);
-		}
+		Test1 test1 = Test1.getIns();
+		Test2 test2 = Test2.getIns();
+		System.out.println("test2.test1:"+test2.test1);
+		System.out.println("test1.test2:"+test1.test2);
+		test1.doTest();
 	}
 
 }

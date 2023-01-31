@@ -35,6 +35,14 @@ public class AsyncBlockServer {
             str = "";
         }
 
+        public String getStr() {
+            return str;
+        }
+
+        public void setStr(String str) {
+            this.str = str;
+        }
+
         @Override
         public void run() {
             //这个线程从内存中拿变量
@@ -54,7 +62,7 @@ public class AsyncBlockServer {
             }).start();
             try {
                 write(socket);
-                read(socket);
+                read(socket,this);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -101,7 +109,7 @@ public class AsyncBlockServer {
      * @param socket
      * @throws IOException
      */
-    public static void read(Socket socket) throws IOException {
+    public static void read(Socket socket,Handler handler) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         new Thread(() -> {
             while (true) {
@@ -109,7 +117,8 @@ public class AsyncBlockServer {
                 try {
                     if ((str = reader.readLine()) != null) // readLine为阻塞操作
                     {
-                        System.out.println("\33 you received a messge:" + str);
+//                        System.out.println("\33 you received a messge:" + str);
+                        handler.setStr(str);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

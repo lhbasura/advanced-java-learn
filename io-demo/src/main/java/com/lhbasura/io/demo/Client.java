@@ -2,9 +2,12 @@ package com.lhbasura.io.demo;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Client {
+    static  List<Client> list =new ArrayList<>();
     public static void main(String[] args) {
         try {
             Socket socket = new Socket("127.0.0.1", 8888);
